@@ -61,3 +61,18 @@ for (let y = 0; y < grid.length; y++) {
 }
 
 console.log({ p1 }); // 2414
+
+let p2 = 0;
+for (let y = 0; y < grid.length; y++) {
+  for (let x = 0; x < grid[y].length; x++) {
+    if (getCell({ x, y }) === "A") {
+      const tl = lookInDirection(translateCellCoords({ x, y }, "NW"), "SE", 3);
+      const tr = lookInDirection(translateCellCoords({ x, y }, "NE"), "SW", 3);
+      if ((tl === "MAS" || tl === "SAM") && (tr === "MAS" || tr === "SAM")) {
+        p2 += 1;
+      }
+    }
+  }
+}
+
+console.log({ p2 }); // 1871
